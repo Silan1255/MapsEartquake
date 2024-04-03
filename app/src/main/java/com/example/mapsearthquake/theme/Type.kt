@@ -1,4 +1,4 @@
-package com.example.mapsearthquake.ui.theme
+package com.example.mapsearthquake.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

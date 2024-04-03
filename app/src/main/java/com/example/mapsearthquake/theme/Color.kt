@@ -1,4 +1,4 @@
-package com.example.mapsearthquake.ui.theme
+package com.example.mapsearthquake.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -1,4 +1,4 @@
-package com.example.mapsearthquake.ui.theme
+package com.example.mapsearthquake.theme
 
 import android.app.Activity
 import android.os.Build
