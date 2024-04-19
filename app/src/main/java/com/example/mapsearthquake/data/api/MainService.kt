@@ -5,5 +5,5 @@ import retrofit2.http.GET
 
 interface MainService {
     @GET(ApiConstants.END_POINTS)
-    suspend fun getEarthquake():List<EarthquakeListResponse.Result>
+    suspend fun getEarthquake(): EarthquakeListResponse
 }

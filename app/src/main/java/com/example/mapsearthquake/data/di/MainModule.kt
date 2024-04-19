@@ -15,18 +15,15 @@ import javax.inject.Singleton
 object MainModule {
     @Provides
     @Singleton
-    fun providerApi(builder:Retrofit.Builder) : MainService {
-        return builder
-            .build()
-            .create(MainService ::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun providerRetrofit() : Retrofit.Builder {
+    fun provideRetrofit(): Retrofit.Builder {
         return Retrofit.Builder()
             .baseUrl(ApiConstants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
     }
 
+    @Provides
+    @Singleton
+    fun provideApi(builder: Retrofit.Builder): MainService {
+        return builder.build().create(MainService::class.java)
+    }
 }

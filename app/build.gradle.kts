@@ -103,5 +103,6 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.3.1")
 
 
+    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
 
 }

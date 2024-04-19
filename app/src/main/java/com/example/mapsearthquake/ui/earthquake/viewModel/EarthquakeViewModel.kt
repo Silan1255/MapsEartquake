@@ -11,19 +11,23 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class EarthquakeViewModel @Inject constructor(private val repository: MainRepository) :
-    ViewModel() {
+class EarthquakeViewModel @Inject constructor(
+    private val mainRepository: MainRepository
+) : ViewModel() {
 
-    private val _state = MutableStateFlow(emptyList<EarthquakeListResponse.Result>())
-    val state : StateFlow<List<EarthquakeListResponse.Result>>
+    private val _state = MutableStateFlow<EarthquakeListResponse?>(null)
+    val state: StateFlow<EarthquakeListResponse?>
         get() = _state
 
     init {
         viewModelScope.launch {
-            val result = repository.getEarthquake()
-            _state.value = result
+            try {
+                val result = mainRepository.getEarthquake()
+                _state.value = result
+            } catch (e: Exception) {
+                _state.value = null
+            }
         }
-
     }
-
 }
+
