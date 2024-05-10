@@ -24,6 +24,7 @@ data class EarthquakeListResponse(
         var provider: String? = null,
         var dateTime: String? = null,
         var createdAt: Int? = null,
-        var locationProperties: LocationProperties? = null
+        var locationProperties: LocationProperties? = null,
+        var geojson: Coordinates? = null
     )
 }

@@ -10,11 +10,11 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.mapsearthquake"
+        applicationId = "com.map.earthquake"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.1"
+        versionCode = 2
+        versionName = "1.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -105,4 +105,9 @@ dependencies {
 
     implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
 
+    //map
+    implementation ("com.google.android.gms:play-services-maps:18.0.2")
+    implementation ("androidx.compose.ui:ui:1.3.0")
+    implementation ("androidx.compose.ui:ui-tooling-preview:1.3.0")
+    implementation ("com.google.maps.android:maps-compose:3.0.0")
 }

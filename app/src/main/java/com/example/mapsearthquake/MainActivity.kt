@@ -15,11 +15,16 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.mapsearthquake.theme.MapsEarthquakeTheme
 import com.example.mapsearthquake.ui.earthquake.view.EarthquakeScreen
+import com.example.mapsearthquake.ui.earthquakeMap.view.EarthquakeMapScreen
 import com.example.mapsearthquake.ui.splashScreen.SplashScreen
+import com.google.android.gms.maps.model.LatLng
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private lateinit var navController: NavHostController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -28,13 +33,14 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val navController = rememberNavController()
+                    navController = rememberNavController()
                     NavigationHost(navController = navController)
                 }
             }
         }
     }
 }
+
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -43,8 +49,14 @@ fun NavigationHost(navController: NavHostController) {
         composable("splash") {
             SplashScreen(navController = navController)
         }
-        composable("next_screen") {
+        composable("earthquake_screen") {
             EarthquakeScreen(navController = navController)
+        }
+
+        composable("earthquake_map_screen/{latitude}/{longitude}") { backStackEntry ->
+            val latitude = backStackEntry.arguments?.getString("latitude")?.toDouble() ?: 0.0
+            val longitude = backStackEntry.arguments?.getString("longitude")?.toDouble() ?: 0.0
+            EarthquakeMapScreen(navController, LatLng(latitude, longitude))
         }
     }
 }

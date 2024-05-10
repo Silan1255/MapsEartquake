@@ -26,6 +26,14 @@ import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.mapsearthquake.R
 import kotlinx.coroutines.delay
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.sp
+import com.example.mapsearthquake.theme.Gray
 
 
 @ExperimentalAnimationApi
@@ -33,12 +41,12 @@ import kotlinx.coroutines.delay
 fun SplashScreen(navController: NavHostController) {
     var goToNextScreen by remember { mutableStateOf(false) }
     LaunchedEffect(key1 = true) {
-        delay(10000) // 10 saniye bekleyin
+        delay(5000)
         goToNextScreen = true
     }
 
     if (goToNextScreen) {
-        navController.navigate("next_screen")
+        navController.navigate("earthquake_screen")
     } else {
         Surface(
             color = Color.White,
@@ -49,8 +57,20 @@ fun SplashScreen(navController: NavHostController) {
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    AnimatedPreloader(modifier = Modifier.size(200.dp))
+                    AnimatedPreloader(modifier = Modifier.size(150.dp))
                     Spacer(modifier = Modifier.height(16.dp))
+                    Text(
+                        "Deprem Bilgi Sistemi",
+                        style = MaterialTheme.typography.headlineMedium,
+                        color = Gray,
+                        lineHeight = 72.sp,
+                        textAlign = TextAlign.Center,
+                        fontSize = 44.sp,
+                        fontFamily = FontFamily(Font(R.font.montserrat_semi_bold)),
+                        modifier = Modifier
+                            .align(Alignment.CenterHorizontally)
+                            .padding(horizontal = 16.dp)
+                    )
                 }
             }
         )
@@ -61,7 +81,7 @@ fun SplashScreen(navController: NavHostController) {
 fun AnimatedPreloader(modifier: Modifier = Modifier) {
     val preloaderLottieComposition by rememberLottieComposition(
         LottieCompositionSpec.RawRes(
-            R.raw.animation_loading
+            R.raw.loading
         )
     )
 
@@ -71,13 +91,14 @@ fun AnimatedPreloader(modifier: Modifier = Modifier) {
         isPlaying = true
     )
 
-
     LottieAnimation(
         composition = preloaderLottieComposition,
         progress = preloaderProgress,
         modifier = modifier
     )
 }
+
+
 
 
 
